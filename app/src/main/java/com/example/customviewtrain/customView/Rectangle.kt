@@ -10,20 +10,24 @@ import com.example.customviewtrain.R
 import kotlin.math.min
 
 class Rectangle(context: Context, attr: AttributeSet) : View(context, attr) {
-    private val backgroundPaint = Paint().apply {
+    private var backgroundPaint = Paint().apply {
         color = Color.CYAN
         style = Paint.Style.FILL
     }
 
     private val fillColor: Int
+    val ta = context.theme
+        .obtainStyledAttributes(attr, R.styleable.Rectangle, 0, 0)
 
     init {
-        val ta = context.theme.obtainStyledAttributes(attr, R.styleable.Rectangle,0,0)
+
         try {
-            fillColor = ta.getColor(R.styleable.Rectangle_fillColor,1)
+            fillColor = ta.getColor(R.styleable.Rectangle_fillcolor, 0)
         } finally {
             ta.recycle()
         }
+
+        init(fillColor)
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -50,4 +54,16 @@ class Rectangle(context: Context, attr: AttributeSet) : View(context, attr) {
         )
         setMeasuredDimension(width, height)
     }
+
+    private fun init(fillColor: Int) {
+        backgroundPaint = Paint()
+        backgroundPaint.style = Paint.Style.FILL
+        setFillColor(fillColor)
+    }
+
+    fun setFillColor(fillColor: Int) {
+        backgroundPaint.color = fillColor
+    }
 }
+
+

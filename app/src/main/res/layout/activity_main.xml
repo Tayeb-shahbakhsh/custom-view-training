@@ -11,7 +11,7 @@
         android:id="@+id/rectangle"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        app:fillColor="@color/black"
+        app:fillcolor="#C31B1B"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
